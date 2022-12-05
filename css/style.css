@@ -60,6 +60,7 @@
 /* === Import template variables === */
 /*-------------------------------------------------------------------*/
 /* === SCSS Compass Functions === */
+
 @-moz-keyframes flash {
   0% {
     opacity: 1;
@@ -20078,7 +20079,7 @@ code {
   color: #001737;
   margin-bottom: .5rem;
   text-transform: capitalize;
-  font-size: 0.875rem;
+  font-size: 1.4rem;
   font-weight: bold;
 }
 
@@ -22820,6 +22821,12 @@ dl li {
   }
   .sidebar-icon-only .main-panel {
     width: calc(100% - 70px);
+  }
+  .button-user{
+    background-color: aqua;
+    height:20pt;
+    width:40pt;
+    margin:5px;
   }
 }
 
