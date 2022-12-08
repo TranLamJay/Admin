@@ -1,2 +1,2 @@
 <?php
-echo "anh ten lam";
+echo "Theem moooi tren nhanh nayf ";
