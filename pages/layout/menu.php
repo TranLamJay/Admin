@@ -13,13 +13,13 @@
         <ul class="nav">
           
           <li class="nav-item">
-            <a class="nav-link" href="../../pages/user/user.php">
+            <a class="nav-link" href="../../pages/user/ListUser.php">
               <i class="icon-head menu-icon"></i>
               <span class="menu-title">User</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../pages/product/product.php">
+            <a class="nav-link" href="../../pages/product/ListProduct.php">
               <i class="icon-box menu-icon"></i>
               <span class="menu-title">Products</span>
             </a>
