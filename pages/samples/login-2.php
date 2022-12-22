@@ -33,14 +33,14 @@
               <h6 class="font-weight-light">Happy to see you again!</h6>
               <form class="pt-3">
                 <div class="form-group">
-                  <label for="exampleInputEmail">Username</label>
+                  <label for="exampleInputEmail">Email</label>
                   <div class="input-group">
                     <div class="input-group-prepend bg-transparent">
                       <span class="input-group-text bg-transparent border-right-0">
                         <i class="mdi mdi-account-outline text-primary"></i>
                       </span>
                     </div>
-                    <input type="text" class="form-control form-control-lg border-left-0" id="exampleInputEmail" placeholder="Username">
+                    <input name="contact-email" type="email" class="form-control form-control-lg border-left-0" id="exampleInputEmail" placeholder="Email">
                   </div>
                 </div>
                 <div class="form-group">
@@ -51,7 +51,7 @@
                         <i class="mdi mdi-lock-outline text-primary"></i>
                       </span>
                     </div>
-                    <input type="password" class="form-control form-control-lg border-left-0" id="exampleInputPassword" placeholder="Password">                        
+                    <input type="password" name="contact-password" class="form-control form-control-lg border-left-0" id="exampleInputPassword" placeholder="Password">                        
                   </div>
                 </div>
                 <div class="my-2 d-flex justify-content-between align-items-center">
@@ -64,7 +64,7 @@
                   <a href="#" class="auth-link text-black">Forgot password?</a>
                 </div>
                 <div class="my-3">
-                  <a class="btn btn-block btn-info btn-lg font-weight-medium auth-form-btn" href="../../index.html">LOGIN</a>
+                  <a name="contact-login" class="btn btn-block btn-info btn-lg font-weight-medium auth-form-btn">LOGIN</a>
                 </div>
                 <div class="mb-2 d-flex">
                   <button type="button" class="btn btn-facebook auth-form-btn flex-grow mr-1">

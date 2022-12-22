@@ -1,111 +1,68 @@
 <?php
-class User
-{
-    private $id;
-    private $name;
+include_once "../util/DbConnect.php";
+class User{
+
+    private $username;  
     private $email;
     private $password;
-
-    public function __construct($id, $name, $email, $password)
-    {
-        $this->id = $id;
-        $this->name = $name;
+    
+    public function __construct($username,$email,$password){
+        $this->username = $username;
         $this->email = $email;
         $this->password = $password;
     }
-
-    public function __destruct()
-    {
-        $this->id = "";
-        $this->name = "";
-        $this->email = "";
-        $this->password = "";
+    
+    public function setUsername($username){
+        $this->username = $username;    
     }
-
-    public function getId(){
-        return $this->id;
+    public function getUsername(){
+        return $this->username;
     }
-
-    public function getname()
-    {
-        return $this->name;
+    public function setEmail($email){
+        $this->email = $email;    
     }
-
-    public function setName($name){
-        $this->name = $name;
+    public function getEmail(){
+        return $this->email;
     }
-
-    public function getPassword()
-    {
+    public function setPassword($password){
+        $this->password = $password;
+    }
+    public function getPassword(){
         return $this->password;
     }
 
-    public function setPassword($password)
-    {
-        $this->password = $password;
-    }
-
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    public function setEmail($email)
-    {
-        $this->email = $email;
-    }
-
-    public function getAll()
-    {
-        $dbConn = new DbConnect("", "", "", "");
-        $sql = "select * from accounts";
-        return $dbConn->getAll($sql);
-    }
-
-    public function get($id)
-    {
-        $dbConn = new DbConnect("", "", "", "");
-        $sql = "select * from accounts where id = :id";
+    public function insertData() {
+        $dbCon = new DbConnect("","","","");
         $data = [
-            ':id' => $id,
+            'name' => $this->username,
+            'email' => $this->email,
+            'password' => $this->password
         ];
-        return $dbConn->get($sql, $data);
+        $sql = "INSERT INTO user(name,email, password) VALUES (:name,:email, :password)";
+        $dbCon->insertData($sql, $data);
     }
 
-    public function find()
-    {
-        $dbConn = new DbConnect("", "", "", "");
-        $sql = "select * from accounts where email = :email and password = :password";
-        $data = [
-            ':email' => $this->email,
-            ':password' => $this->password,
-        ];
-        return $dbConn->get($sql, $data);
+    public function getAllUser(){
+        $dbCon = new DbConnect("","","","");
+        $query = "SELECT * FROM user";
+        $data = $dbCon->getAll($query);
+        $dbCon->disconnect();
+        return $data;
     }
 
-    public function insert()
-    {
-        $dbConn = new DbConnect("", "", "", "");
-        $sql = "insert into accounts(id,name,email,password) values(:id,:name,:email,:password)";
-        $data = [
-            ':id' => $this->id,
-            ':name' => $this->name,
-            ':email' => $this->email,
-            ':password' => $this->password
-        ];
-        return $dbConn->insertData($sql, $data);
+    public function getData() {
+        $dbCon = new DbConnect("","","","");
+        $sql = "SELECT * FROM user WHERE email=:email";
+        $data = ['email' => $this->email];
+        return $dbCon->get($sql, $data);
     }
 
-    public function update($id)
-    {
-        $dbConn = new DbConnect("", "", "", "");
-        $sql = "update accounts set name = :name, email = :email, password = :password where id = :id";
+    public function deleteUser($username) {
+        $dbCon = new DbConnect("","","","");
         $data = [
-            ':name' => $this->name,
-            ':email' => $this->email,
-            ':password' => $this->password,
-            ':id' => $id
+            'username' => $username
         ];
-        return $dbConn->updateData($sql, $data);
+        $sql = "DELETE FROM user WHERE username=:username";
+        $dbCon->deleteData($sql,$data);
     }
 }

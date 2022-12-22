@@ -25,6 +25,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="../../pages/samples/login-2.php">
+              <i class="icon-box menu-icon"></i>
+              <span class="menu-title">Login</span>
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="../../pages/tables/basic-table.html">
               <i class="icon-command menu-icon"></i>
               <span class="menu-title">New</span>

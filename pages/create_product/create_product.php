@@ -36,48 +36,129 @@
                         <!-- <p class="card-description">
                     Basic form elements
                   </p> -->
-                        <form class="forms-sample">
-                            <div class="form-group">
-                                <label for="exampleInputID1">ID</label>
-                                <input type="text" class="form-control" id="exampleInputName1" placeholder="ID">
+                        <form class="forms-sample" enctype="multipart/form-data" id="create-product" action="../../api/controller/product_controller.php" method="POST">
+                            <?php
+                            include '../../api/util/DbConnect.php';
+                            if (isset($_SESSION['edit'])) {
+                                $product = $_SESSION['edit'];
+                                echo "
+                            <div class='form-group'>
+                                <label for='exampleInputID1'>ID</label>
+                                <input value = '{$product['id']}' type='text' class='form-control' id='exampleInputName1' placeholder='ID'>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputName2">Name Product</label>
-                                <input type="text" class="form-control" id="exampleInputName1" placeholder="Name Product">
+                            <div class='form-group'>
+                                <label for='exampleInputName2'>Name Product</label>
+                                <input  value = '{$product['name']}' type='text' class='form-control' id='exampleInputName1' placeholder='Name Product'>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputPrice3">Price</label>
-                                <input type="text" class="form-control" id="exampleInputEmail3" placeholder="Price">
+                            <div class='form-group'>
+                                <label for='exampleInputPrice3'>Price</label>
+                                <input value = '{$product['price']}' type='text' class='form-control' id='exampleInputEmail3' placeholder='Price'>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputColor4">Color</label>
-                                <input type="text" class="form-control" id="exampleInputPassword4" placeholder="Color">
+                            <div class='form-group'>
+                                <label for='exampleInputColor4'>Color</label>
+                                <input value = '{$product['color']}' type='text' class='form-control' id='exampleInputPassword4' placeholder='Color'>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleSelectGB">GB</label>
-                                <select class="form-control" id="exampleSelectGender">
+                            <div class='form-group'>
+                                <label for='exampleSelectGB'>GB</label>
+                                <select value = '{$product['gb']}' class='form-control' id='exampleSelectGender'>
                                     <option>512GB</option>
                                     <option>256GB</option>
                                     <option>128GB</option>
                                     <option>64GB</option>
                                 </select>
                             </div>
-                            <div class="form-group">
+                            <div class='form-group'>
+                                <label for='exampleDescribe1'>Describe</label>
+                                <textarea value = '{$product['color']}' class='form-control' id='exampleTextarea1' rows='8'></textarea>
+                            </div>";
+                                $sql = "select * from loaisanpham";
+                                $dbConn = new DbConnect('', '', '', '');
+                                $data = $dbConn->getAll($sql);
+                                foreach ($data as $category) {
+                                    $selected = $category['id'] === $product['loai_id'] ? 'selected' : '';
+                                    echo "
+                                    <option {$selected} value='{$category['id']}'>{$category['name']}</option>
+                                    ";
+                                }
+                                echo "
+                            </select>
+                            <div class='form-group'>
+                                <label for='exampleInputCategory5'>Category</label>
+                                <select name = 'option' style='width:100%; padding:2px 0 ;text-transform: none !important;  opacity: 0.5; font-size: 14px;'>
+                            </div>";
+                                echo "
+                            </select>
+                            <div class='form-group'>
                                 <label>File upload</label>
-                                <input type="file" name="img[]" class="file-upload-default">
-                                <div class="input-group col-xs-12">
-                                    <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                                    <span class="input-group-append">
-                                        <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                <input type='file' name='img[]'' class='file-upload-default'>
+                                <div class='input-group col-xs-12'>
+                                    <input style='height:100% type='text' class='form-control file-upload-info' disabled placeholder='Upload Image'>
+                                    <span class='input-group-append'>
+                                        <button class='file-upload-browse btn btn-primary' type='button'>Upload</button>
                                     </span>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleDescribe1">Describe</label>
-                                <textarea class="form-control" id="exampleTextarea1" rows="8"></textarea>
+                            
+                            <button value = '{$product['id']}' type='submit' class='btn btn-primary mr-2'>Save</button>
+                            <a href='../product/product.php' type='submit' class='btn btn-light'>Cancel</a>
+                            ";
+                            } else {
+                                echo "
+                            
+                            <div class='form-group'>
+                                <label for='exampleInputName2'>Name Product</label>
+                                <input name = 'name' type='text' class='form-control' id='exampleInputName1' placeholder='Name Product'>
                             </div>
-                            <button type="submit" class="btn btn-primary mr-2">Save</button>
-                            <a href="../product/product.php" type="submit" class="btn btn-light">Cancel</a>
+                            <div class='form-group'>
+                                <label for='exampleInputPrice3'>Price</label>
+                                <input name = 'price' type='text' class='form-control' id='exampleInputEmail3' placeholder='Price'>
+                            </div>
+                            <div class='form-group'>
+                                <label for='exampleInputColor4'>Color</label>
+                                <input name = 'color' type='text' class='form-control' id='exampleInputPassword4' placeholder='Color'>
+                            </div>
+                            <div class='form-group'>
+                                <label for='exampleSelectGB'>GB</label>
+                                <select name = 'gb' class='form-control' id='exampleSelectGender'>
+                                    <option>512GB</option>
+                                    <option>256GB</option>
+                                    <option>128GB</option>
+                                    <option>64GB</option>
+                                </select>
+                            </div>
+                            <div class='form-group'>
+                                <label for='exampleDescribe1'>Describe</label>
+                                <textarea name ='describe' class='form-control' id='exampleTextarea1' rows='8'></textarea>
+                            </div>";
+                                $sql = "select * from loaisanpham";
+                                $dbConn = new DbConnect('', '', '', '');
+                                $data = $dbConn->getAll($sql);
+                                ?>
+                                <label for='exampleDescribe1'>Category Product</label>
+                                <select name ='loai_id' style='width:100%; padding:2px 0 ;text-transform: none !important; background-color: #ffffff; opacity: 0.5; color:#000000 !important; font-size: 14px;'> <?php
+                                foreach ($data as $category) {
+                                echo "
+                                <option value='{$category['id']}'>{$category['name']}</option>
+                                ";
+                                }?></select><?php
+                                echo "
+                            
+                            <div class='form-group'>
+                                <label>File upload</label>
+                                <input type='file' name='image' class='file-upload-default'>
+                                <div class='input-group col-xs-12'>
+                                    <input style='height:100% type='text' class='form-control file-upload-info' disabled placeholder='Upload Image'>
+                                    <span class='input-group-append'>
+                                        <button class='file-upload-browse btn btn-primary' type='button'>Upload</button>
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <input  name='add' type='submit' class='btn btn-primary mr-2' value='Save'/>
+                            <a href='../product/ListProduct.php' type='submit' class='btn btn-light'>Cancel</a>
+                            ";
+                            }
+                            ?>
                         </form>
                     </div>
                 </div>

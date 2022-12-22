@@ -1,46 +1,36 @@
 <?php
 class Product
 {
-    private $id;
     private $name;
     private $price;
     private $color;
     private $GB;
     private $describe;
-    private $image;
+    private $images;
     private $loai_id;
 
-    public function __construct($id, $name, $price, $color, $GB, $describe, $image,$loai_id)
+    public function __construct( $name, $price, $color, $GB, $describe, $images,$loai_id)
     {
-        $this->id = $id;
         $this->name = $name;
         $this->price = $price;
         $this->color = $color;
         $this->GB = $GB;
         $this->describe = $describe;
-        $this->image = $image;
+        $this->images = $images;
         $this->loai_id= $loai_id;
     }
 
     public function __destruct()
     {
-        $this->id = "";
         $this->name = "";
         $this->price = "";
         $this->color = "";
         $this->GB = "";
         $this->describe = "";
-        $this->image = "";
+        $this->images = "";
         $this->loai_id="";
     }
 
-    public function getId(){
-        return $this->id;
-    }
-
-    public function setId($id){
-        $this->id = $id;
-    }
 
     public function getName()
     {
@@ -92,14 +82,14 @@ class Product
         $this->describe = $describe;
     }
 
-    public function getImage()
+    public function getImages()
     {
-        return $this->image;
+        return $this->images;
     }
 
-    public function setImage($image)
+    public function setImages($images)
     {
-        $this->image = $image;
+        $this->images = $images;
     }
 
     public function getLoai_id(){
@@ -113,7 +103,7 @@ class Product
     public function get($id)
     {
         $dbConn = new DbConnect('', '', '', '');
-        $sql = "select * from noodles where id = :id";
+        $sql = "select * from sanpham where id = :id";
         $data = [
             ':id' => $id
         ];
@@ -123,21 +113,21 @@ class Product
     public function getAll()
     {
         $dbConn = new DbConnect('', '', '', '');
-        $sql = "select * from noodles";
+        $sql = "select * from sanpham";
         return $dbConn->getAll($sql);
     }
 
     public function insert()
     {
         $dbConn = new DbConnect('', '', '', '');
-        $sql = "insert into noodles(id, name, price, color, GB, describe, image, loai_id) values(:id, :name, :price, :color, :GB, :describe, :image, :loai_id )";
+        $sql = "insert into sanpham(name, price, color, gb, describe, images, loai_id) values( :name, :price, :color, :gb, :describe, :images, :loai_id )";
         $data = [
             ':name' => $this->name,
             ':price' => $this->price,
             ':color' => $this->color,
-            ':GB' => $this->GB,
+            ':gb' => $this->GB,
             ':describe' => $this->describe,
-            ':image' => $this->image,
+            ':images' => $this->images,
             ':loai_id' => $this->loai_id,
         ];
         return $dbConn->insertData($sql, $data);
@@ -146,7 +136,7 @@ class Product
     public function delete($id)
     {
         $dbConn = new DbConnect('', '', '', '');
-        $sql = "delete from noodles where id = :id";
+        $sql = "delete from sanpham where id = :id";
         $data = [
             ':id' => $id,
         ];
@@ -156,14 +146,14 @@ class Product
     public function update($id)
     {
         $dbConn = new DbConnect('', '', '', '');
-        $sql = "update noodles set id = :id, name = :name, price = :price, color = :color, GB = :GB, describe = :describe, image = :image, loai_id = :loai_id where id = :id";
+        $sql = "update sanpham set name = :name, price = :price, color = :color, gb = :gb, describe = :describe, image = :image, loai_id = :loai_id where id = :id";
         $data = [
             ':name' => $this->name,
             ':price' => $this->price,
             ':color' => $this->color,
-            ':GB' => $this->GB,
+            ':gb' => $this->GB,
             ':describe' => $this->describe,
-            ':image' => $this->image,
+            ':images' => $this->images,
             ':loai_id' => $this->loai_id,
             ':id' => $id
         ];

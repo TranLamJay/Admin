@@ -127,8 +127,8 @@ if (!isset($_SESSION['login'])) {
                   <td>hinh</td>
                   <td>
                     <form method = 'POST' action = '../../api/controller/product_controller.php'>
-                    <button class='btn btn-success'><b class='mdi mdi-upload btn-icon-prepend'>Sửa</b></button>
-                    <button class='btn btn-danger'><b class='mdi mdi-alert btn-icon-prepend'>Xóa</b></button>
+                    <button name = 'edit' value = '{$product['id']}' class='btn btn-success'><b class='mdi mdi-upload btn-icon-prepend'>Sửa</b></button>
+                    <button name = 'delete' value = '{$product['id']}' class='btn btn-danger'><b class='mdi mdi-alert btn-icon-prepend'>Xóa</b></button>
                     </form>
                   </td>
                 </tr>
