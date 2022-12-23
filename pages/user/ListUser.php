@@ -101,44 +101,25 @@ if(!isset($_SESSION['login'])){
                           <th>Name</th>
                           <th>Email</th>
                           <th>Password</th>
-                          <th>Edit</th>
                         </tr>
                       </thead>
                       <tbody>
+                      <?php
+                      include '../../api/util/DbConnect.php';
+                      $dbConn = new DbConnect('', '', '', '');
+                      $sql = "select * from user";
+                      $data = $dbConn->getAll($sql);
+                      foreach ($data as $user) {
+                        echo "
                         <tr>
-                          <td>1</td>
-                          <td>TranLam</td>
-                          <td>laimh1221@gmail.com</td>
-                          <td>123456</td>
-                          <td>
-                            <button class="btn btn-success"><b class="mdi mdi-upload btn-icon-prepend">Sửa</b></button>
-                            <button class="btn btn-danger"><b class="mdi mdi-alert btn-icon-prepend">Xóa</b></button>
-                          </td>
-                        </tr>
-                        <!-- <tr>
-                          <td>Messsy</td>
-                          <td>53275532</td>
-                          <td>15 May 2017</td>
-                          <td><label class="badge badge-warning">In progress</label></td>
-                        </tr>
-                        <tr>
-                          <td>John</td>
-                          <td>53275533</td>
-                          <td>14 May 2017</td>
-                          <td><label class="badge badge-info">Fixed</label></td>
-                        </tr>
-                        <tr>
-                          <td>Peter</td>
-                          <td>53275534</td>
-                          <td>16 May 2017</td>
-                          <td><label class="badge badge-success">Completed</label></td>
-                        </tr>
-                        <tr>
-                          <td>Dave</td>
-                          <td>53275535</td>
-                          <td>20 May 2017</td>
-                          <td><label class="badge badge-warning">In progress</label></td>
-                        </tr> -->
+                        <td>{$user['id']}</td>
+                        <td>{$user['name']}</td>
+                        <td>{$user['email']}</td>
+                        <td>{$user['password']}</td>
+                          </tr>
+                        ";
+                      }
+                      ?>
                       </tbody>
                     </table>
                   </div>

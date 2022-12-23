@@ -16,7 +16,7 @@ if (isset($_POST)) {
         if ($email == $data['email'] && $password == $data['password']) {
             $_SESSION['username'] = $data['name'];
             $_SESSION['is_login'] = true;
-            header("Location: ../../pages/user/user.php");
+            header("Location: ../../pages/user/ListUser.php");
             // exit();
         } else {
             header("Location: ../../pages/samples/login-2.php");
