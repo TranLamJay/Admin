@@ -52,7 +52,7 @@ if(($_SESSION['is_login'])==false){
         </ul>
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item dropdown d-lg-flex d-none">
-            <a href="../create_user/create_user.php" type="button" class="btn btn-info font-weight-bold">+ Create New</a>
+            <a href="../user/ListUser.php" type="button" class="btn btn-info font-weight-bold">+ Create New</a>
           </li>
 
           <li class="nav-item dropdown d-flex mr-4 ">
