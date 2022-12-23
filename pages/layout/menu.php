@@ -28,13 +28,13 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../../pages/category/ListCategory.php">
-              <i class="icon-box menu-icon"></i>
+              <i class="icon-stack menu-icon"></i>
               <span class="menu-title">Category</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../../pages/news/ListNews.php">
-              <i class="icon-box menu-icon"></i>
+              <i class="icon-bell menu-icon"></i>
               <span class="menu-title">News</span>
             </a>
           </li>
