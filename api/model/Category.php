@@ -34,7 +34,7 @@ class Category
     public function get()
     {
         $dbConn = new DbConnect('', '', '', '');
-        $sql = "select * from categories where id = :id";
+        $sql = "select * from loaisanpham where id = :id";
         $data = [
             ':id' => $this->id
         ];
@@ -44,14 +44,14 @@ class Category
     public function getAll()
     {
         $dbConn = new DbConnect('', '', '', '');
-        $sql = "select * from categories";
+        $sql = "select * from loaisanpham";
         return $dbConn->getAll($sql);
     }
 
     public function insert()
     {
         $dbConn = new DbConnect('', '', '', '');
-        $sql = "insert into categories(id, name) values(:id, :name)";
+        $sql = "insert into loaisanpham(id, name) values(:id, :name)";
         $data = [
             ':id' => $this->id,
             ':name' => $this->name
@@ -62,7 +62,7 @@ class Category
     public function delete()
     {
         $dbConn = new DbConnect('', '', '', '');
-        $sql = "delete from categories where id = :id";
+        $sql = "delete from loaisanpham where id = :id";
         $data = [
             ':id' => $this->id,
         ];
@@ -72,7 +72,7 @@ class Category
     public function update()
     {
         $dbConn = new DbConnect('', '', '', '');
-        $sql = "update categories set name = :name where id = :id";
+        $sql = "update loaisanpham set name = :name where id = :id";
         $data = [
             ':name' => $this->name,
             ':id' => $this->id

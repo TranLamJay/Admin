@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_SESSION['login']==false) {
+if(($_SESSION['is_login'])==false){
   header('location:../samples/login-2.php');
 }
 ?>
@@ -12,7 +12,7 @@ if ($_SESSION['login']==false) {
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Product</title>
+  <title>User</title>
   <!-- base:css -->
   <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="../../vendors/feather/feather.css">
@@ -27,6 +27,8 @@ if ($_SESSION['login']==false) {
 <body>
   <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
+
+
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
       <a class="navbar-brand brand-logo" href="../user/ListUser.php">Admin Pages</a>
@@ -50,7 +52,7 @@ if ($_SESSION['login']==false) {
         </ul>
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item dropdown d-lg-flex d-none">
-            <a href="../create_product/create_product.php" type="button" class="btn btn-info font-weight-bold">+ Create New</a>
+            <a href="../create_user/create_user.php" type="button" class="btn btn-info font-weight-bold">+ Create New</a>
           </li>
 
           <li class="nav-item dropdown d-flex mr-4 ">
@@ -87,7 +89,7 @@ if ($_SESSION['login']==false) {
             <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Product List</h4>
+                  <h4 class="card-title">User Table</h4>
                   <!-- <p class="card-description">
                     Add class <code>.table</code>
                   </p> -->
@@ -96,44 +98,32 @@ if ($_SESSION['login']==false) {
                       <thead>
                         <tr>
                           <th>ID</th>
-                          <th>Name</th>
-                          <th>Price</th>
-                          <th>Color</th>
-                          <th>GB</th>
-                          <th>Images</th>
-                          <th>Edit</th>
+                          <th>TieuDe</th>
+                          <th>HinhMinhHoa</th>
+                          <th>NoiDung</th>
+                          <th>NgayDang</th>
+                          <th>NguoiDang</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <?php
-                        include '../../api/util/DbConnect.php';
-                        include '../../api/model/Category.php';
-
-                        $dbConn = new DbConnect('', '', '', '');
-                        $sql = "select * from sanpham";
-                        $data = $dbConn->getAll($sql);
-                        //var_dump($data);
-                        foreach ($data as $product) {
-                          //var_dump($product);
-                          echo "
-                <tr>
-                  <td>{$product['id']}</td>
-                  <td>{$product['name']}</td>
-                  <td>{$product['price']}</td>
-                  <td>{$product['color']}</td>
-                  <td>{$product['gb']}</td>
-                  
-                  <td>{$product['images']}</td>
-                  <td>
-                    <form method = 'POST' action = '../../api/controller/product_controller.php'>
-                    <button name = 'edit' value = '{$product['id']}' class='btn btn-success'><b class='mdi mdi-upload btn-icon-prepend'>Sửa</b></button>
-                    <button name = 'delete' value = '{$product['id']}' class='btn btn-danger'><b class='mdi mdi-alert btn-icon-prepend'>Xóa</b></button>
-                    </form>
-                  </td>
-                </tr>
-              ";
-                        }
-                        ?>
+                      <?php
+                      include '../../api/util/DbConnect.php';
+                      $dbConn = new DbConnect('', '', '', '');
+                      $sql = "select * from tintuc";
+                      $data = $dbConn->getAll($sql);
+                      foreach ($data as $user) {
+                        echo "
+                        <tr>
+                        <td>{$user['id']}</td>
+                        <td>{$user['tieude']}</td>
+                        <td>{$user['hinhminhhoa']}</td>
+                        <td>{$user['noidung']}</td>
+                        <td>{$user['ngaydang']}</td>
+                        <td>{$user['admin_id']}</td>
+                          </tr>
+                        ";
+                      }
+                      ?>
                       </tbody>
                     </table>
                   </div>

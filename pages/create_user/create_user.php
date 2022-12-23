@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(($_SESSION['is_login'])==false){
+  header('location:../samples/login-2.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

@@ -1,13 +1,15 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="user-profile">
           <div class="user-image">
-            <img src="../../images/faces/face28.png">
+            <img src="../../images/avatar.png">
           </div>
           <div class="user-name">
-              Edward Spencer
+          <?php
+                echo $_SESSION['username'];
+              ?>
           </div>
           <div class="user-designation">
-              Developer
+              
           </div>
         </div>
         <ul class="nav">
@@ -25,9 +27,15 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../pages/samples/login-2.php">
+            <a class="nav-link" href="../../pages/category/ListCategory.php">
               <i class="icon-box menu-icon"></i>
-              <span class="menu-title">Login</span>
+              <span class="menu-title">Category</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../pages/news/ListNews.php">
+              <i class="icon-box menu-icon"></i>
+              <span class="menu-title">News</span>
             </a>
           </li>
           <li class="nav-item">

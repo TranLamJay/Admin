@@ -1,3 +1,10 @@
+<?php
+session_start();
+if ($_SESSION['login']==false) {
+  header('location:../samples/login-2.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,10 +49,7 @@
                             if (isset($_SESSION['edit'])) {
                                 $product = $_SESSION['edit'];
                                 echo "
-                            <div class='form-group'>
-                                <label for='exampleInputID1'>ID</label>
-                                <input value = '{$product['id']}' type='text' class='form-control' id='exampleInputName1' placeholder='ID'>
-                            </div>
+                            
                             <div class='form-group'>
                                 <label for='exampleInputName2'>Name Product</label>
                                 <input  value = '{$product['name']}' type='text' class='form-control' id='exampleInputName1' placeholder='Name Product'>
@@ -74,20 +78,15 @@
                                 $sql = "select * from loaisanpham";
                                 $dbConn = new DbConnect('', '', '', '');
                                 $data = $dbConn->getAll($sql);
+                                ?>
+                                <label for='exampleDescribe1'>Category Product</label>
+                                <select name ='loai_id' style='width:100%; padding:2px 0 ;text-transform: none !important; background-color: #ffffff; opacity: 0.5; color:#000000 !important; font-size: 14px;'> <?php
                                 foreach ($data as $category) {
-                                    $selected = $category['id'] === $product['loai_id'] ? 'selected' : '';
-                                    echo "
-                                    <option {$selected} value='{$category['id']}'>{$category['name']}</option>
-                                    ";
-                                }
                                 echo "
-                            </select>
-                            <div class='form-group'>
-                                <label for='exampleInputCategory5'>Category</label>
-                                <select name = 'option' style='width:100%; padding:2px 0 ;text-transform: none !important;  opacity: 0.5; font-size: 14px;'>
-                            </div>";
+                                <option value='{$category['id']}'>{$category['name']}</option>
+                                ";
+                                }?></select><?php
                                 echo "
-                            </select>
                             <div class='form-group'>
                                 <label>File upload</label>
                                 <input type='file' name='img[]'' class='file-upload-default'>
@@ -99,7 +98,7 @@
                                 </div>
                             </div>
                             
-                            <button value = '{$product['id']}' type='submit' class='btn btn-primary mr-2'>Save</button>
+                            <input  name='edit' type='submit' class='btn btn-primary mr-2' value='Save'/>
                             <a href='../product/product.php' type='submit' class='btn btn-light'>Cancel</a>
                             ";
                             } else {
@@ -130,18 +129,18 @@
                                 <label for='exampleDescribe1'>Describe</label>
                                 <textarea name ='describe' class='form-control' id='exampleTextarea1' rows='8'></textarea>
                             </div>";
-                                $sql = "select * from loaisanpham";
-                                $dbConn = new DbConnect('', '', '', '');
-                                $data = $dbConn->getAll($sql);
-                                ?>
-                                <label for='exampleDescribe1'>Category Product</label>
-                                <select name ='loai_id' style='width:100%; padding:2px 0 ;text-transform: none !important; background-color: #ffffff; opacity: 0.5; color:#000000 !important; font-size: 14px;'> <?php
-                                foreach ($data as $category) {
-                                echo "
-                                <option value='{$category['id']}'>{$category['name']}</option>
-                                ";
-                                }?></select><?php
-                                echo "
+                            $sql = "select * from loaisanpham";
+                            $dbConn = new DbConnect('', '', '', '');
+                            $data = $dbConn->getAll($sql);
+                            ?>
+                            <label for='exampleDescribe1'>Category Product</label>
+                            <select name ='loai_id' style='width:100%; padding:2px 0 ;text-transform: none !important; background-color: #ffffff; opacity: 0.5; color:#000000 !important; font-size: 14px;'> <?php
+                            foreach ($data as $category) {
+                            echo "
+                            <option value='{$category['id']}'>{$category['name']}</option>
+                            ";
+                            }?></select><?php
+                            echo "
                             
                             <div class='form-group'>
                                 <label>File upload</label>
