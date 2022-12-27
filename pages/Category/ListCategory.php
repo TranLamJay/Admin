@@ -52,7 +52,7 @@ if(($_SESSION['is_login'])==false){
         </ul>
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item dropdown d-lg-flex d-none">
-            <a href="../user/ListUser.php" type="button" class="btn btn-info font-weight-bold">+ Create New</a>
+            <a href="./Create_Category.php" type="button" class="btn btn-info font-weight-bold">+ Create New</a>
           </li>
 
           <li class="nav-item dropdown d-flex mr-4 ">
@@ -99,6 +99,7 @@ if(($_SESSION['is_login'])==false){
                         <tr>
                           <th>ID</th>
                           <th>Name</th>
+                          <th>Edit </th>
                         </tr>
                       </thead>
                       <tbody>
@@ -112,6 +113,12 @@ if(($_SESSION['is_login'])==false){
                         <tr>
                         <td>{$user['id']}</td>
                         <td>{$user['name']}</td>
+                        <td>
+                    <form method = 'POST' action = '../../api/controller/Category_controller.php'>
+                    <button name = 'edit' value = '{$user['id']}' class='btn btn-success'><b class='mdi mdi-upload btn-icon-prepend'>Sửa</b></button>
+                    <button name = 'delete' value = '{$user['id']}' class='btn btn-danger'><b class='mdi mdi-alert btn-icon-prepend'>Xóa</b></button>
+                    </form>
+                  </td>
                           </tr>
                         ";
                       }
